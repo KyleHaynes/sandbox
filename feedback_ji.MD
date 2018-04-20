@@ -1,3 +1,4 @@
+1. **Regarding postcode ranges used**
 Following file (you have to agree to download)   
 https://postcode.auspost.com.au/free_display.html?id=1  
 indicates the following are the valid ranges:  
@@ -53,3 +54,14 @@ State: NT
 
 Interesting how some states have postcodes from outside their region. We know this true for delviery centres (border states etc.).
 
+2. **Postcode argumnet/input**
+If postcode has any non-numeric characters and is not NA, then you get vague coercion messages. 
+```r
+Warning message:
+In phone_add_prefix(phone_vec = phones, postcode = postcodes) :
+  NAs introduced by coercion
+```
+Not sure if it's expected in cleaning that this would be resolved or if you should test and have a more verbose warnings / error?
+
+3. **NA's in postcode**  
+Why are you not using which() in evaluation? Otherwise when you add prefixes to dataframes you need to explicility remove na postcode records?
